@@ -1,11 +1,10 @@
+// Employee.java
 package company.abstracts;
-
 import company.interfaces.Employable;
 
 public abstract class Employee implements Employable {
-
-    private final String name;
-    private final double salary;
+    private String name;
+    private double salary;
     public Employee(String name, double salary, int id) {
         this.name = name;
         this.salary = salary;
