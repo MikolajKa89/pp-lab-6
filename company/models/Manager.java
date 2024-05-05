@@ -11,4 +11,8 @@ public class Manager extends Employee {
     public void manage() {
         System.out.println("Manager " + getName() + " is managing...");
     }
+
+    public String getName() {
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    }
 }

@@ -1,57 +1,32 @@
 package company.abstracts;
 
-import java.util.Objects;
+public class Employee {
 
-public abstract class Employee {
+    // ... (pozostały kod klasy)
 
-    private String name;
-    private double salary;
-    private int id;
-    private String hireDate;
-    private String position;
+    public Employee(String employeeName, double annualSalary, int employeeId, String hireDate, String position) {
+    }
 
-    public Employee(String name, double salary, int id, String hireDate, String position) {
-        this.name = name;
-        this.salary = salary;
-        this.id = id;
-        this.hireDate = hireDate;
-        this.position = position;
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Employee)) {
+            return false;
+        }
+
+        Employee other = (Employee) obj;
+        return this == other || this.getId() == other.getId();
+    }
+
+    public Object getId() {
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
     }
 
     public String getName() {
-        return name;
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
     }
 
     public double getSalary() {
-        return salary;
+        throw new UnsupportedOperationException("Unimplemented method 'getSalary'");
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getHireDate() {
-        return hireDate;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(getName(), employee.getName()) &&
-                Objects.equals(getHireDate(), employee.getHireDate()) &&
-                Objects.equals(getPosition(), employee.getPosition());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getHireDate(), getPosition());
-    }
-
-    public abstract void work();
+    // ... (pozostały kod klasy)
 }
