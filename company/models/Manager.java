@@ -1,14 +1,14 @@
 package company.models;
+
 import company.abstracts.Employee;
 
 public class Manager extends Employee {
 
-    public Manager(String employeeName, double annualSalary, int employeeId) {
-        super(employeeName, annualSalary, employeeId);
+    public Manager(String employeeName, double annualSalary, int employeeId, String hireDate, String position) {
+        super(employeeName, annualSalary, employeeId, hireDate, position);
     }
 
-    @Override
-    public void work() {
+    public void manage() {
         System.out.println("Manager " + getName() + " is managing...");
     }
 }

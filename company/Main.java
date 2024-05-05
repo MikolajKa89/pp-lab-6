@@ -1,5 +1,6 @@
 package company;
 
+import company.abstracts.Employee;
 import company.models.Manager;
 import company.models.Worker;
 
