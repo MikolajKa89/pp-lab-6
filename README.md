@@ -1,1 +1,2 @@
-# pp-lab-6
+🙏 oby starczyło na zlicznie
+
