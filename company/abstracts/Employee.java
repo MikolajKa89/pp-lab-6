@@ -1,9 +1,7 @@
+// Employee.java
 package company.abstracts;
 
-import java.util.Objects;
-
-public abstract class Employee {
-
+public abstract class Employee implements Employable {
     private String name;
     private double salary;
     private int id;
@@ -26,10 +24,6 @@ public abstract class Employee {
         return salary;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getHireDate() {
         return hireDate;
     }
@@ -39,19 +33,7 @@ public abstract class Employee {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(getName(), employee.getName()) &&
-                Objects.equals(getHireDate(), employee.getHireDate()) &&
-                Objects.equals(getPosition(), employee.getPosition());
-    }
-
-    @Override
     public int hashCode() {
-        return Objects.hash(getName(), getHireDate(), getPosition());
+        return id;
     }
-
-    public abstract void work();
 }
