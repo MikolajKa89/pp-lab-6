@@ -1,31 +1,37 @@
-
 import company.abstracts.Employee;
 import company.models.Manager;
 import company.models.Worker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Main {
 
-    private static Employee worker1;
-    private static Employee worker2;
-    private static Employee worker4;
-    private static Employee worker3;
-
     public static void main(String[] args) {
-        // ... (Utworzenie instancji obiektów)
+        List<Employee> employees = createEmployees();
+        calculateSalaries(employees);
+        searchForDuplicateIds(employees);
 
-        // Dodanie instancji do listy
+        // Add more employees with duplicate IDs
+        employees.add(new Worker("Grzegorz Wiśniewski", 3500, 1, "2022-08-01", "Software Developer", null));
+        employees.add(new Manager("Anna Kowalska", 6000, 5, "2021-01-01", "CEO"));
+
+        searchForDuplicateIds(employees);
+    }
+
+    private static List<Employee> createEmployees() {
         List<Employee> employees = new ArrayList<>();
-        employees.add(worker1);
-        employees.add(worker2);
-        employees.add(worker3);
-        employees.add(worker4);
-        Employee manager;
-        employees.add(manager);
+        employees.add(new Worker("Jan Kowalski", 2500, 1, "2023-01-01", "Software Engineer", null));
+        employees.add(new Worker("Anna Nowak", 3000, 1, "2022-06-01", "Data Analyst", null));
+        employees.add(new Worker("Piotr Zieliński", 2200, 3, "2024-03-01", "Junior Developer", null));
+        employees.add(new Worker("Marta Wiśniewska", 2800, 4, "2023-05-01", "UX/UI Designer", null));
+        employees.add(new Manager("Krzysztof Baran", 5000, 5, "2020-02-01", "CTO"));
+        return employees;
+    }
 
-        // Zliczanie sum pensji
+    private static void calculateSalaries(List<Employee> employees) {
         double totalSalary = 0;
         double totalManagerSalary = 0;
         double totalWorkerSalary = 0;
@@ -39,43 +45,21 @@ public class Main {
             }
         }
 
-        // Wyświetlanie sum pensji
         System.out.println("\nCałkowita suma pensji wszystkich pracowników: " + totalSalary);
         System.out.println("Całkowita suma pensji wszystkich managerów: " + totalManagerSalary);
         System.out.println("Całkowita suma pensji wszystkich pracowników fizycznych: " + totalWorkerSalary);
+    }
 
-        // Wyszukiwanie obiektów z powtarzającym się ID
-        System.out.println("\nWyszukiwanie obiektów z powtarzającym się ID:");
-
+    private static void searchForDuplicateIds(List<Employee> employees) {
+        Map<Integer, Employee> employeeMap = new HashMap<>();
         for (Employee employee : employees) {
-            for (Employee employeeToCompare : employees) {
-                if (employee.getId() == employeeToCompare.getId() && !employee.equals(employeeToCompare)) {
-                    System.out.println("Znaleziono powtarzające się ID: " + employee.getId());
-                    System.out.println("Obiekt 1: " + employee);
-                    System.out.println("Obiekt 2: " + employeeToCompare);
-                    System.out.println();
-                }
-            }
-        }
-
-        // Dodanie kolejnych instancji z powtarzającym się ID
-        Worker worker5 = new Worker("Grzegorz Wiśniewski", 3500, 1, "2022-08-01", "Software Developer", null); // Powtarza ID z worker1
-        Manager manager2 = new Manager("Anna Kowalska", 6000, 5, "2021-01-01", "CEO"); // Powtarza ID z manager
-
-        employees.add(worker5);
-        employees.add(manager2);
-
-        // Ponowne wyszukiwanie obiektów z powtarzającym się ID
-        System.out.println("\nPonowne wyszukiwanie obiektów z powtarzającym się ID:");
-
-        for (Employee employee : employees) {
-            for (Employee employeeToCompare : employees) {
-                if (employee.getId() == employeeToCompare.getId() && !employee.equals(employeeToCompare)) {
-                    System.out.println("Znaleziono powtarzające się ID: " + employee.getId());
-                    System.out.println("Obiekt 1: " + employee);
-                    System.out.println("Obiekt 2: " + employeeToCompare);
-                    System.out.println();
-                }
+            if (employeeMap.containsKey(employee.getId())) {
+                System.out.println("Znaleziono powtarzające się ID: " + employee.getId());
+                System.out.println("Obiekt 1: " + employeeMap.get(employee.getId()));
+                System.out.println("Obiekt 2: " + employee);
+                System.out.println();
+            } else {
+                employeeMap.put((Integer) employee.getId(), employee);
             }
         }
     }
